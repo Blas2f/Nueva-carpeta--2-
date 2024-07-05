@@ -1,0 +1,21 @@
+{% extends "plantillaBase.html" %}
+{% load static %}
+{% block body %}
+</header>     
+<div class="Formulario" style="display: grid; justify-content: center; align-items: center;">
+    <form action="registro" method="POST" id="registro" class="Registro">
+        {% csrf_token %}
+        <h1>Registrarse</h1>
+        <input type="email" placeholder="Ingrese su correo " required name="correo" id="correo">
+        <input type="text" placeholder="Ingrese su nombre de usuario " required name="username" id="username">
+        <input type="text" placeholder="Ingrese su nombre " required name="p_nombre" id="p_nombre">
+        <input type="text" placeholder="Ingrese su apellido " required name="apellido" id="apellido">
+        <input type="password" placeholder="Ingrese su contraseña " required name="password" id="password">
+        <button type="submit" name="opcion" value="Agregar" onclick="validar()"> Registrarse</button>    
+    </form>
+</div>
+
+<script src="{% static 'Login.js' %}"></script>
+
+
+{% endblock  %}

@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body>    
   <header class="header">
     <div class="logo">
       <a href="{% url 'principal' %}"><img src="{% static 'imagenes/logotipo-icono-plantilla-simbolo-planta-suerte-verde-abstracto-arbol-natural-suerte-sobre-fondo-blan.png' %}" alt="Logo principal">
@@ -28,27 +28,33 @@
             <li><a href="{% url 'herramientas' %}">Herramientas</a></li>
             <li><a href="{% url 'semillas' %}">Semillas</a></li>
             <li><a href="{% url 'macetas' %}">Maceteros</a></li>
-            <li><a href="Enciclopedia.html">Enciclopedia</a></li>
+
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'lista' %}">Lista</a></li>
+            {% endif %}
+
+            <li><a>Enciclopedia</a></li>
        </ul>            
     </nav>
-    <a class="btn" href="login.html"><button>Inicio Sesion</button></a>
-</header>    
-<div class="d-flex p-2 bd-highlight">
-      <div class="card" style="width: 18rem;">
-        <img src="{% static 'imagenes\gsc_116336358_1449289_1.webp' %}" class="cardImg" alt="...">
-        <div class="card-body">
-          <h5 class="card-title" id="precio">$5.990</h5>
-          <p class="card-text">Macetero mediano</p>
-          <a href="#" class="btn btn-primary">Comprar</a>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <img src="{% static 'imagenes/macetero grande.webp' %}" class="cardImg" alt="...">
-        <div class="card-body">
-          <h5 class="card-title" id="precio">$8.990</h5>
-          <p class="card-text">Macetero Grande</p>
-          <a href="#" class="btn btn-primary">Comprar</a>
-        </div>
-      </div>
-      </div>
+
+    {% if user.is_authenticated %}
+    <a class="btn" href="{% url 'logout' %}"><button>Cerrar Sesion</button></a>
+    {% else %}
+    <a class="btn" href="{% url 'login' %}"><button>Inicio Sesion</button></a>
+    {% endif %}
+    
+</header>
+{% if messages %}
+  {% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+  {% endfor%}
+{% endif %} 
+{% block body %}
+
+{% endblock  %}    
+
+</body>
 </html>

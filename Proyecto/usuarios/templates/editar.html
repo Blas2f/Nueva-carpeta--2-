@@ -1,0 +1,20 @@
+{% extends "plantillaBase.html" %}
+{% load static %}
+{% block body %}
+</header>     
+<div class="Formulario" style="display: grid; justify-content: center; align-items: center;">
+    <form action="userUpdate" method="POST" id="editar" class="editar">
+        {% csrf_token %}
+        <h1>Registrarse</h1>
+        <pre type="email" required name="correo" id="correo" value="{{user.email}}"></pre>
+        <pre type="email" required name="username" id="username" value="{{user.username}}"></pre>
+        <pre type="email" required name="p_nombre" id="p_nombre" value="{{user.first_name}}"></pre>
+        <pre type="email" required name="apellido" id="apellido" value="{{user.last_name}}"></pre>
+        <pre type="email" required name="password" id="password" value="{{user.password}}"></pre>
+        <button type="submit" name="opcion" value="Actualizar" onclick="validar()">Registrarse</button>    
+    </form>
+</div>
+
+<script src="{% static 'Login.js' %}"></script>
+
+{% endblock  %}

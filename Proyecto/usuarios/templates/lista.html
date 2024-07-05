@@ -1,0 +1,27 @@
+{% extends "plantillaBase.html" %}
+{% load static %}
+{% block body %}
+<div class="Microtitulos2" >
+    <h2>Usuarios registrados:</h2>
+    <br>
+    <h5>Editar datos</h5>
+    <a class="btn" href="{% url 'registro' %}"><button>Registrar Nuevo usuario</button></a>
+    <table>
+        {% if user %}
+        <th>Correo    </th>
+        <th>Usuario   </th>
+        <br>
+        <br>
+        
+            {% for x in user %}
+                <tr>
+                    <td> {{ x.email   }}
+                    <td> {{ x.username }}
+                    <td><a href="{% url 'borrar_user' pk=x.username %}">Eliminar Usuario</a>
+                    <td><a href="{% url 'borrar_user' pk=x.username %}">Eliminar Usuario</a>    
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+    </div>
+{% endblock  %}        
