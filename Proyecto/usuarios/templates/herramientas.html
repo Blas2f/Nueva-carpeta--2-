@@ -1,14 +1,13 @@
 {% extends "plantillaBase.html" %}
 {% load static %}
 {% block body %}
-{% load static %} 
     <div class="d-flex p-2 bd-highlight">
       <div class="card" style="width: 18rem;">
         <img src="{% static 'imagenes/tijerapodar.webp' %}" class="cardImg" alt="...">
         <div class="card-body">
           <h5 class="card-title" id="precio">$12.990</h5>
           <p class="card-text">Tijeras para podar</p>
-          <a href="#" class="btn btn-primary">Comprar</a>
+          <button  value="6" id="agregarCarro" onclick="funag(event)" class="btn btn-primary">Agregar al Carrito</button>
         </div>
       </div>
       <div class="card" style="width: 18rem;">
@@ -16,8 +15,29 @@
         <div class="card-body">
           <h5 class="card-title" id="precio">$9.990</h5>
           <p class="card-text">Barre hojas metalico</p>
-          <a href="#" class="btn btn-primary">Comprar</a>
+          <button  value="5" id="agregarCarro" onclick="funag(event)" class="btn btn-primary">Agregar al Carrito</button>
         </div>
       </div>
       </div>
+
+      <script>
+        function funag (e){
+          e.preventDefault();
+          $.ajax({
+            type: 'POST',
+            url: "{% url 'cart_agregar' %}",
+            data: {
+              id_prod:e.target.value,
+              csrfmiddlewaretoken: '{{ csrf_token }}',
+              action: 'post'
+            },
+            success: function(json){
+              console.log(json)
+            },
+            error: function(xhr, errmsg, err){
+            }
+          })
+      
+        }
+        </script>
 {% endblock  %}    

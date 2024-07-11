@@ -124,6 +124,16 @@ body{
     align-items: center;
     
 }
+.RegistroAct{
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    
+}
 
 .Formulario{
     position: flex;

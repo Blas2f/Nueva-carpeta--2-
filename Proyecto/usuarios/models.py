@@ -12,7 +12,8 @@ class Categoria(models.Model):
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.DecimalField(default=0,decimal_places=2,max_digits=7)
-    id_cat = models.ForeignKey(Categoria, on_delete=models.CASCADE, default=1)    
+    id_cat = models.ForeignKey(Categoria, on_delete=models.CASCADE, default=1)
+    id_prod = models.CharField(max_length=3, default=1)
     descripcion = models.CharField(max_length=250,default='', blank=True, null=True)
 
     en_venta = models.BooleanField(default=False)

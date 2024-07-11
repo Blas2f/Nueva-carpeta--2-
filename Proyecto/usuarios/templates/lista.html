@@ -6,19 +6,18 @@
     <br>
     <h5>Editar datos</h5>
     <a class="btn" href="{% url 'registro' %}"><button>Registrar Nuevo usuario</button></a>
-    <table>
+    <table style="width: 15cm">
         {% if user %}
-        <th>Correo    </th>
-        <th>Usuario   </th>
-        <br>
-        <br>
-        
+        <tr style="height:100px">
+            <th style="vertical-align:bottom">Correo</th>
+            <th style="vertical-align:bottom">Usuario</th>
+        </tr>
             {% for x in user %}
                 <tr>
-                    <td> {{ x.email   }}
+                    <td> {{ x.email   }} 
                     <td> {{ x.username }}
                     <td><a href="{% url 'borrar_user' pk=x.username %}">Eliminar Usuario</a>
-                    <td><a href="{% url 'borrar_user' pk=x.username %}">Eliminar Usuario</a>    
+                    <td><a href="{% url 'user_edit' pk=x.username %}">Actualizar Usuario</a>    
                 </tr>
             {% endfor %}
         {% endif %}

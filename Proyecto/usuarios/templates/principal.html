@@ -6,8 +6,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-  <div><h2 class="Microtitulos2">Productos que podras encontrar:</h2></div>
-  
+  <div><h2 class="Microtitulos2">Productos que podras encontrar:</h2></div> 
+
     <div id="carousel" class="carouselClass" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -23,7 +23,6 @@
       </div>
     </div>
 
-
     <div><h2 class="Microtitulos">Productos en oferta</h2></div>
     <div class="d-flex p-2 bd-highlight">
       <div class="card" style="width: 15rem;">
@@ -31,7 +30,7 @@
         <div class="card-body">
           <h5 class="card-title" id="precio">$10.990</h5>
           <p class="card-text">Pala jardinera</p>
-          <a href="#" class="btn btn-primary">Comprar</a>
+          <button value="8" id="agregarCarro" onclick="funag(event)" class="btn btn-primary">Agregar al Carrito</button>
         </div>
       </div>
       <div class="card" style="width: 15rem;">
@@ -39,15 +38,51 @@
         <div class="card-body">
           <h5 class="card-title1" id="precio">$7.990</h5>
           <p class="card-text">Tierra de hojas 1kg</p>
-          <a href="#" class="btn btn-primary">Comprar</a>
+          <button value="7" id="agregarCarro" onclick="funag(event)" class="btn btn-primary">Agregar al Carrito</button>
         </div>
       </div> 
       </div>
 
+      <script>
+      function funag (e){
+        e.preventDefault();
+        $.ajax({
+          type: 'POST',
+          url: "{% url 'cart_agregar' %}",
+          data: {
+            id_prod:e.target.value,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+          },
+          success: function(json){
+            console.log(json)
+          },
+          error: function(xhr, errmsg, err){
+          }
+        })
+    
+      }
+      </script>
 {% endblock  %}
 
+$(document).on('click', '#agregarCarro', function(e){
+  e.preventDefault();
+  $.ajax({
+    type: 'POST',
+    url: "{% url 'cart_agregar' %}",
+    data: {
+      id_prod:$('#agregarCarro').val(),
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+      action: 'post'
+    },
+    success: function(json){
+      console.log(json)
+    },
+    error: function(xhr, errmsg, err){
+    }
+  })
 
-
+})
 
 
 

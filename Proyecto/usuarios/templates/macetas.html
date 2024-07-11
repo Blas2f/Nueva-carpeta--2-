@@ -8,7 +8,7 @@
     <div class="card-body">
       <h5 class="card-title" id="precio">$5.990</h5>
       <p class="card-text">Macetero mediano</p>
-      <a href="#" class="btn btn-primary">Comprar</a>
+      <button value="2" id="agregarCarro" onclick="funag(event)" class="btn btn-primary">Comprar</button>
     </div>
   </div>
   <div class="card" style="width: 18rem;">
@@ -16,8 +16,28 @@
     <div class="card-body">
       <h5 class="card-title" id="precio">$8.990</h5>
       <p class="card-text">Macetero Grande</p>
-      <a href="#" class="btn btn-primary">Comprar</a>
+      <button value="1" id="agregarCarro" onclick="funag(event)" class="btn btn-primary">Comprar</button>
     </div>
   </div>
   </div>
+  <script>
+    function funag (e){
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'cart_agregar' %}",
+        data: {
+          id_prod:e.target.value,
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+          action: 'post'
+        },
+        success: function(json){
+          console.log(json)
+        },
+        error: function(xhr, errmsg, err){
+        }
+      })
+  
+    }
+    </script>
 {% endblock  %}

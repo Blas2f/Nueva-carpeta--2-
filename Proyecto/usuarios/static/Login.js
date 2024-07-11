@@ -2,9 +2,6 @@ let loginDiv = document.getElementById("login");
 let registerDiv = document.getElementById("register");
 let regBtn = document.getElementById("regBtn");
 
-
-
-
 function validar(){
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
