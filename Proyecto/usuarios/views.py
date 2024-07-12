@@ -107,7 +107,6 @@ def userUpdate(request):
         user.last_name=last_name
         user.password=password
         user.save()
-
         
         messages.success(request, ("Datos actualizados"))
         
