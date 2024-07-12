@@ -5,11 +5,10 @@ from usuarios.models import Producto
 # Create your views here.
 def cart_items(request):
     cart = Cart(request)
-    productos_cart = cart.obt_prod
+    productos_cart = cart.obt_prod()
     return render(request, "cart_items.html", {"productos_cart":productos_cart})
  
 def cart_agregar(request):
-
     cart = Cart(request)
 
     if request.POST.get('action') == 'post':
@@ -20,8 +19,7 @@ def cart_agregar(request):
 
         cart.add(producto=producto)
 
-
-        response = JsonResponse({'Nombre:': producto.nombre})
+        response = JsonResponse({'Nombre:': producto.nombre,'id_prod': producto.precio})
         return response
 
 def cart_eliminar(request):
