@@ -22,7 +22,6 @@
         </div>
       </div>
     </div>
-
     <div><h2 class="Microtitulos">Productos en oferta</h2></div>
     <div class="d-flex p-2 bd-highlight">
       <div class="card" style="width: 15rem;">
@@ -32,6 +31,7 @@
           <p class="card-text">Pala jardinera</p>
           <button value="8" id="agregarCarro" onclick="funag(event)" class="btn btn-primary">Agregar al Carrito</button>
         </div>
+  
       </div>
       <div class="card" style="width: 15rem;">
         <img src="{% static 'imagenes\tierra de hojas.webp' %}" class="cardImg" alt="...">
@@ -60,29 +60,10 @@
           error: function(xhr, errmsg, err){
           }
         })
-    
       }
       </script>
 {% endblock  %}
 
-$(document).on('click', '#agregarCarro', function(e){
-  e.preventDefault();
-  $.ajax({
-    type: 'POST',
-    url: "{% url 'cart_agregar' %}",
-    data: {
-      id_prod:$('#agregarCarro').val(),
-      csrfmiddlewaretoken: '{{ csrf_token }}',
-      action: 'post'
-    },
-    success: function(json){
-      console.log(json)
-    },
-    error: function(xhr, errmsg, err){
-    }
-  })
-
-})
 
 
 

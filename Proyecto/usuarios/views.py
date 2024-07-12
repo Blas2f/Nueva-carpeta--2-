@@ -82,8 +82,8 @@ def borrar_user(request,pk):
         return render(request, 'lista.html', context)
 
 def user_edit(request, pk):
-    if pk != " ":
-        user=User.objects.get(username=pk)
+    if pk != "":
+        user=User.objects.get(id=pk)
         
         context={'user':user}
         if user:

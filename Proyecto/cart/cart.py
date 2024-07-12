@@ -5,10 +5,10 @@ class Cart():
     def __init__(self,request):
         self.session = request.session
 
-        cart = self.session.get('sessions_key')
+        cart = self.session.get('session_key')
 
         if 'session_key' not in request.session:
-            cart = self.session['sessions_key'] = {}
+            cart = self.session['session_key'] = {}
 
         self.cart = cart
 
@@ -18,7 +18,7 @@ class Cart():
         if id_producto in self.cart:
             pass
         else:
-            self.cart[id_producto] = {'precio': str(producto.precio)}
+            self.cart[id_producto] = {'precio prod': str(producto.precio)}
 
         self.session.modified = True
 

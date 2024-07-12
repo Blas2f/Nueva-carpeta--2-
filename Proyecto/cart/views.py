@@ -7,7 +7,7 @@ def cart_items(request):
     cart = Cart(request)
     productos_cart = cart.obt_prod
     return render(request, "cart_items.html", {"productos_cart":productos_cart})
-
+ 
 def cart_agregar(request):
 
     cart = Cart(request)
@@ -20,9 +20,8 @@ def cart_agregar(request):
 
         cart.add(producto=producto)
 
-        cart_quantity = cart.__len__()
 
-        response = JsonResponse({'Cantidad:': cart_quantity})
+        response = JsonResponse({'Nombre:': producto.nombre})
         return response
 
 def cart_eliminar(request):

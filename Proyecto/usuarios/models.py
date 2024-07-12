@@ -21,8 +21,6 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
-
-
 # 
 class pedido(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
@@ -33,5 +31,6 @@ class pedido(models.Model):
     estado = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.producto        
+        return self.producto   
+         
       

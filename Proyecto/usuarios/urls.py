@@ -12,6 +12,6 @@ urlpatterns = [
     path('registro', views.registro, name='registro'),
     path('lista', views.lista, name='lista'),
     path('borrar_user/<str:pk>', views.borrar_user, name='borrar_user'),
-    path('user_edit/<str:pk>', views.user_edit, name='user_edit'),
+    path('user_edit/<int:pk>', views.user_edit, name='user_edit'),
     path('userUpdate', views.userUpdate, name='userUpdate'),
 ]    
